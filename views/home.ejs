@@ -1,0 +1,59 @@
+<%- include ('partials/head') %>
+  <%- include ('partials/nav') %>
+  <!-- Banner section starts -->
+  <section class="home">
+    <!-- overlay text on background -->
+    <div class="overlay-text">
+        <h1>Buy <span>your</span> </h1>
+        <h1>favorite <span>book</span> </h1>
+        <h1>from <span>here</span> </h1>
+
+        <!-- Shop button that go straight to cart (future development) -->
+        <a href="/order" class="shop-btn">Shop Now
+            <img src="/img/right-arrow.png" alt="right-arrow-icon">
+        </a>
+    </div>
+  </section>
+  <!-- banner section ends -->
+  <section class="content">
+    <% let productCounter = 0; %>
+    <% products.forEach(function(product, index){ %>
+        <% if (index % 3 === 0) { %>
+            <% if (index !== 0) { %>
+                </div> <!-- Close the previous grid-container -->
+            <% } %>
+            <div class="category-box">
+                <div class="heading">
+                    <h2>New <span><%= product.category %></span> Books</h2>
+                </div>
+                <div class="grid-container">
+        <% } %>
+        <div class="grid-item">
+            <a href="#">
+                <img src="/img/<%= product.image %>" alt="<%= product.image %>">
+                <h3><%= product.name %></h3>
+                <p>
+                  <% if (Array.isArray(product.author)) { %>
+                    <%= product.author.join(', ') %>
+                  <% } else if (product.author) { %>
+                    <%= product.author %>
+                  <% } %>
+                </p>
+                <p>$<%= product.price %></p>
+            </a>
+        </div>
+        <% if (productCounter % 3 === 2 || index === products.length - 1) { %>
+                </div> <!-- Close the current grid-container -->
+        
+        <!-- link to related category -->
+        <a href="/order" class="view-btn">Order Now
+        <img src="/img/right-arrow.png" alt="right-arrow-icon">
+        </a>
+
+            </div>
+        <% } %>
+      <% productCounter++; %>
+    <% }); %>
+  </section>
+
+  <%- include ('partials/footer') %>
