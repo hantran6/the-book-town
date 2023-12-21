@@ -591,8 +591,17 @@ textarea{
 /*== Coming soon page ends =======================================================*/
 
 /*== Order Page starts =======================================================*/
-main{
-    display: block;
+.order-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+  
+.order-main > div {
+    max-width: 800px; /* Adjust the maximum width as needed */
+    padding: 20px;
 }
 
 main #checkout-form{
@@ -714,6 +723,91 @@ fieldset{
 }
 /*== Order Page ends =======================================================*/
 
+/*== Find Order Page starts =======================================================*/
+table , th, td{
+    padding: 0 1rem;
+    margin: 1rem auto;
+    border: 1px solid;
+    border-collapse: collapse;
+}
 
+.totalAmount{
+    align-items: end;
+}
 
+.text-end{
+    text-align: right!important;
+}
+/*== Find Order Page ends =======================================================*/
 
+/*== Order Summary Page starts =======================================================*/
+.py-1{
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+}
+
+.row>*{
+    max-width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    margin-top: 1rem;
+}
+
+.mx-auto{
+    margin-right: auto!important;
+    margin-left: auto!important;
+
+}
+
+.col-md-4{
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
+.align-items-center{
+    align-items: center!important;
+}
+
+.justify-content-between{
+    justify-content: space-between!important;
+}
+
+.d-flex{
+    display:flex!important;
+}
+
+.rounded-pill{
+    border-radius: 50rem!important;
+    color:#fff;
+}
+
+.badge{
+    padding: 0.3rem 0.8rem;
+    text-align: center;
+}
+
+.bg-primary{
+    opacity: 1;
+    background-color: #ce7852;
+}
+
+.list-group{
+    padding: 0.5rem 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+}
+
+.list-group-item{
+    position:relative;
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
+}
+
+.list-group-item:last-child{
+    border-bottom: none;
+}
+
+.unbold{
+    font-weight: 400!important;
+}
+/*== Order Summary Page ends =======================================================*/

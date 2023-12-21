@@ -3,7 +3,7 @@
 # Script to create and populate the cafe database.
 # Check the create-db.log file after running it to verify successful execution.
 #
-mysql --user=root --password="Re:Start!9" --verbose < sql/create-db.sql > create-db.log
+mysql --user=root --password="123456" --verbose < sql/create-db.sql > create-db.log
 
 echo
 echo "Create Database script completed."

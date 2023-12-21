@@ -8,7 +8,7 @@
         <h1>favorite <span>book</span> </h1>
         <h1>from <span>here</span> </h1>
 
-        <!-- Shop button that go straight to cart (future development) -->
+        <!-- Shop button that go to order page -->
         <a href="/order" class="shop-btn">Shop Now
             <img src="/img/right-arrow.png" alt="right-arrow-icon">
         </a>
@@ -24,21 +24,15 @@
             <% } %>
             <div class="category-box">
                 <div class="heading">
-                    <h2>New <span><%= product.category %></span> Books</h2>
+                    <h2>New <span><%= product.product_category_name %></span> Books</h2>
                 </div>
                 <div class="grid-container">
         <% } %>
         <div class="grid-item">
             <a href="#">
-                <img src="/img/<%= product.image %>" alt="<%= product.image %>">
-                <h3><%= product.name %></h3>
-                <p>
-                  <% if (Array.isArray(product.author)) { %>
-                    <%= product.author.join(', ') %>
-                  <% } else if (product.author) { %>
-                    <%= product.author %>
-                  <% } %>
-                </p>
+                <img src="/img/<%= product.img_url %>" alt="<%= product.img_url %>">
+                <h3><%= product.product_name %></h3>
+                <p><i><%= product.product_author %></i></p>
                 <p>$<%= product.price %></p>
             </a>
         </div>
@@ -54,6 +48,6 @@
         <% } %>
       <% productCounter++; %>
     <% }); %>
-  </section>
+</section>
 
   <%- include ('partials/footer') %>

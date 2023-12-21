@@ -9,50 +9,55 @@ USE book_db;
 
 /* Create PRODUCT_GROUP table. */
 
-CREATE TABLE product_group (
-  product_group_number INT(3) NOT NULL PRIMARY KEY,
-  product_group_name VARCHAR(25) NOT NULL DEFAULT ''
+CREATE TABLE product_category (
+  product_category_number INT(3) NOT NULL PRIMARY KEY,
+  product_category_name VARCHAR(25) NOT NULL DEFAULT ''
 );
 
 INSERT INTO product_category (product_category_number, product_category_name) VALUES
-	  (1, 'Fiction'),
-      (2, 'Nonfiction'),
-      (3, 'Children');
+	(1, 'Fiction'),
+  (2, 'Nonfiction'),
+  (3, 'Children');
 
-CREATE TABLE product (
-  id INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  image_url VARCHAR(256) DEFAULT 'img/default-image.jpg',
+CREATE TABLE products (
+  product_id INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   product_name VARCHAR(40) NOT NULL DEFAULT '',
   product_author VARCHAR(256) NOT NULL DEFAULT '',
-  product_group INT(2) NOT NULL DEFAULT 1,
+  product_category INT(2) NOT NULL DEFAULT 1,
   price DECIMAL(10,2) NOT NULL DEFAULT 0.0,
+  img_url VARCHAR(256) NOT NULL DEFAULT '',
   FOREIGN KEY (product_category) REFERENCES product_category (product_category_number)
 );
 
-INSERT INTO product (product_name, description, price, product_group, img_url) VALUES
-	  ('Homecoming', 'Kate Morton', 1, 32, 'img/fiction-1.jpg'),
-	  ('Things I Wish I Told My Mother', 'Susan Patterson, Susan Dilallo, James Patterson', 1, 35, 'img/fiction-2.jpg'),
-	  ('When In Rome', 'Liam Callanan', 1, 22, 'img/fiction-3.jpg'),
-      ('The Turban and the Hat', 'Sonallah Ibrahim', 2, 32, 'img/nonfiction-1.jpg'),
-	  ('How to Be Perfect', 'Michael Schur', 2, 35, 'img/nonfiction-2.jpg'),
-	  ('Who is Wellness for', 'Fariha Róisín', 2, 22, 'img/nonfiction-3.jpg'),
-      ('Bo the Brave', 'Bethan Wollvin', 3, 32, 'img/children-1.jpg'),
-	  ('A Girl Like You', 'Frank Murphy', 'Carla Murphy', 3, 35, 'img/children-2.jpg'),
-	  ('Rosie Revere, Engineer', 'Andrea Beaty', 3, 22, 'img/children-3.jpg');
+INSERT INTO products (product_name, product_author, product_category, price, img_url) VALUES
+	('Homecoming', 'Kate Morton', 1, 32, 'fiction-1.jpg'),
+	('Things I Wish I Told My Mother', 'Susan Patterson, Susan Dilallo, James Patterson', 1, 35, 'fiction-2.jpg'),
+	('When In Rome', 'Liam Callanan', 1, 22, 'fiction-3.jpg'),
+	('The Turban and the Hat', 'Sonallah Ibrahim', 2, 32, 'nonfiction-1.jpg'),
+	('How to Be Perfect', 'Michael Schur', 2, 35, 'nonfiction-2.jpg'),
+	('Who is Wellness for', 'Fariha Róisín', 2, 22, 'nonfiction-3.jpg'),
+  ('Bo the Brave', 'Bethan Wollvin', 3, 32, 'children-1.jpg'),
+	('A Girl Like You', 'Frank Murphy, Carla Murphy', 3, 35, 'children-2.jpg'),
+	('Rosie Revere, Engineer', 'Andrea Beaty', 3, 22, 'children-3.jpg');
 
-CREATE TABLE `order` (
-  order_number INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  order_date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  amount DECIMAL(10,2) NOT NULL DEFAULT 0.0
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    zip VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE order_item (
-  order_number INT(5) NOT NULL,
-  order_item_number INT(5) NOT NULL,
-  product_id INT(3),
-  quantity INT(2),
-  amount DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (order_number, order_item_number),
-  FOREIGN KEY (order_number) REFERENCES `order` (order_number),
-  FOREIGN KEY (product_id) REFERENCES product (id)
+CREATE TABLE order_items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
 );

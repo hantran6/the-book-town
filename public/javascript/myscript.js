@@ -1,14 +1,3 @@
-/* RMIT University Vietnam
-Course: COSC2430 Web Programming
-Semester: 2023A
-Assessment: Assignment 1
-Author: Tran Nguyen Ngoc Han
-ID: s3963227
-Acknowledgement:
-- Books information and images: https://bookshop.org/categories/m/fiction
-- About us video: https://www.youtube.com/watch?v=AcfM9Z9MbXI
-- Icon: https://fontawesome.com/ */
-
 //activate header on scroll
 const header = document.querySelector("header");
 window.addEventListener("scroll", function(){

@@ -2,25 +2,21 @@
 <%- include ('partials/nav') %>
 <!-- Banner section starts -->
 <section class="home" id="category-banner">
-    <!-- overlay text on backgroun -->
-    <div class="overlay-text">
-        <h1>Can't <span>find</span></h1>
-        <h1>your <span>book</span>?</h1>
-        <!-- search bar (future development) -->
-        <div class="search-bar-container">
-            <form action="" class="search-bar">
-                <input type="text" placeholder="Search books, authors, ISBNs" name="search-text">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
-    </div>
+    <!-- Banner section starts -->
+    <!-- Video play -->
+    <div class="banner">
+      <video autoplay loop playsinline>
+          <source src="/video/category-sale.mp4" type="video/mp4">
+      </video>
+  </div>
+  <!-- Banner section ends -->
 </section>
 <!-- Banner section ends -->
 
 <!-- Sample checkout form from web programming course by Mr. Tom Huynh -->
 <!--==========Checkout Form Section==========-->
-<div class="container" >
-    <main>
+<div class="container">
+    <main class="order-main">
         <div class="py-5 text-center">
             <h2>Checkout form</h2>
             <p class="lead">Please fill in the billing address to complete the order of your purchase!</p>
@@ -88,9 +84,10 @@
                     <% products.forEach(function(product){ %>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="products[]" value="<%= product.id %>" id="product<%= product.id %>">
-                            <label class="form-check-label" for="product<%= product.id %>"><%= product.name %> - $<%= product.price %></label>
+                            <input class="form-check-input" type="checkbox" name="products[]" value="<%= product.product_id %>" id="product<%= product.product_idid %>">
+                            <label class="form-check-label" for="product<%= product.product_id %>"><%= product.product_name %> - $<%= product.price %></label>
                         </div>
+                        
           
                       <% }); %>
                 </div>
