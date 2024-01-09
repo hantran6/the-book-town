@@ -1,22 +1,17 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const AWS = require('aws-sdk');
 
-// Configure sdk with credentials
-AWS.config.update({
-    accessKeyId: 'ASIASYZSTC7JWO4VFOV3',
-    secretAccessKey: 'Wsf/M7qs5d9wgGBXMW2K5eutmUZpqkJzodpGv/Be',
-    region: 'us-east-1',
-});
-
-// set up view engine and assets
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+// Use the `express.urlencoded` middleware to parse incoming form data
 app.use(express.urlencoded({ extended: true }));
 
-// Require the db-config.js
-const pool = require('./db-config');
+// let products = require('./products');
+// console.log(products);
+
+const pool = require('./config/db');
   
 app.get('/', (req, res) => {
   const query = `
@@ -200,6 +195,9 @@ app.post('/find-order', (req, res) => {
     res.render('find-order', { email, orderItems: results });
   });
 });
+
+// ... (your existing code)
+
 
 app.listen(port, () => {
     console.log(`Servert started on port ${port}`);
