@@ -4,7 +4,7 @@
 #
 # Check the set-root-password.log file after running it to verify successful execution.
 # 
-mysql --user=ec2-user --verbose < sql/set-root-password.sql > set-root-password.log
+mysql --user=root --verbose < sql/set-root-password.sql > set-root-password.log
 
 echo
 echo "Set Root Password script completed."
