@@ -1,19 +1,16 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const AWS = require('aws-sdk');
 
-// Configure the AWS SDK with your credentials
 AWS.config.update({
-    region: 'us-east-1',  // Replace with your AWS region
+    region: 'us-east-1',
 });
 
-// Create an AWS SSM (Systems Manager) client
 const ssm = new AWS.SSM();
 
-// Retrieve parameters from Parameter Store
 async function getParameter(parameterName) {
     const params = {
         Name: parameterName,
-        WithDecryption: true,  // Decrypt the parameter value if it's encrypted
+        WithDecryption: true,
     };
 
     try {
@@ -25,10 +22,8 @@ async function getParameter(parameterName) {
     }
 }
 
-// Retrieve database connection information from Parameter Store
 async function getDatabaseConfig() {
     const host = await getParameter('/booktown/dbURL');
-    console.log(host);
     const user = await getParameter('/booktown/dbUsername');
     const password = await getParameter('/booktown/dbPassword');
     const database = await getParameter('/booktown/dbName');
@@ -39,42 +34,35 @@ async function getDatabaseConfig() {
         password,
         database,
         connectionLimit: 10,
+        connectTimeout: 300,
     };
 }
 
-// Create a MySQL pool using parameters from Parameter Store
-const createDatabasePool = async () => {
-    const config = await getDatabaseConfig();
-    const pool = mysql.createPool(config);
+let pool; // Define the pool variable outside the createDatabasePool function
 
-    // Handle errors
-    pool.on('connection', (connection) => {
-        connection.on('error', (err) => {
-            console.error('MySQL pool error:', err);
+const createDatabasePool = async () => {
+    if (!pool) { // Create the pool only if it doesn't exist
+        const config = await getDatabaseConfig();
+        console.log(config);
+        pool = mysql.createPool(config);
+
+        // Close the MySQL connection pool when the process receives a SIGINT signal
+        process.on('SIGINT', () => {
+            console.log('Received SIGINT. Closing MySQL pool...');
+            pool.end()
+                .then(() => {
+                    console.log('MySQL pool closed successfully.');
+                    process.exit();
+                })
+                .catch((err) => {
+                    console.error('Error closing MySQL pool:', err);
+                    process.exit(1);
+                });
         });
-    });
+    }
 
     return pool;
 };
 
-// Export the MySQL pool
-const pool = createDatabasePool();
-
-// Close the connection when done
-process.on('SIGINT', () => {
-    console.log('Received SIGINT. Closing MySQL pool...');
-
-    // Close the MySQL connection pool
-    pool.end((err) => {
-        if (err) {
-            console.error('Error closing MySQL pool:', err);
-        } else {
-            console.log('MySQL pool closed successfully.');
-        }
-
-        // Exit the process
-        process.exit();
-    });
-});
-
-module.exports = pool;
+// Export a function that returns the pool when called
+module.exports = { createDatabasePool };
