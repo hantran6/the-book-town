@@ -28,7 +28,7 @@ async function getParameter(parameterName) {
 // Retrieve database connection information from Parameter Store
 async function getDatabaseConfig() {
     const host = await getParameter('/booktown/dbURL');
-    const user = await getParameter('/booktown/dbUser');
+    const user = await getParameter('/booktown/dbUsername');
     const password = await getParameter('/booktown/dbPassword');
     const database = await getParameter('/booktown/dbName');
 
