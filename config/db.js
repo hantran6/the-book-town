@@ -28,6 +28,7 @@ async function getParameter(parameterName) {
 // Retrieve database connection information from Parameter Store
 async function getDatabaseConfig() {
     const host = await getParameter('/booktown/dbURL');
+    console.log(host);
     const user = await getParameter('/booktown/dbUsername');
     const password = await getParameter('/booktown/dbPassword');
     const database = await getParameter('/booktown/dbName');
@@ -37,26 +38,32 @@ async function getDatabaseConfig() {
         user,
         password,
         database,
-        connectionLimit: 10, 
+        connectionLimit: 10,
     };
 }
 
 // Create a MySQL pool using parameters from Parameter Store
 const createDatabasePool = async () => {
     const config = await getDatabaseConfig();
-    return mysql.createPool(config);
+    const pool = mysql.createPool(config);
+
+    // Handle errors
+    pool.on('connection', (connection) => {
+        connection.on('error', (err) => {
+            console.error('MySQL pool error:', err);
+        });
+    });
+
+    return pool;
 };
 
-// Handle errors
+// Export the MySQL pool
 const pool = createDatabasePool();
-pool.on('error', (err) => {
-    console.error('MySQL pool error:', err);
-});
 
 // Close the connection when done
 process.on('SIGINT', () => {
     console.log('Received SIGINT. Closing MySQL pool...');
-    
+
     // Close the MySQL connection pool
     pool.end((err) => {
         if (err) {
