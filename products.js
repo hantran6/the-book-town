@@ -1,47 +1,84 @@
-const products = [
+const products =[
     {
         id: 1,
-        image: "p-1.jpg",
-        name: "Fairtrade Pocket Hoodie",
-        price: 64.95,
-        description: "A comfortable and stylish hoodie made from fairtrade materials."
+        image: "fiction-1.jpg",
+        name: "Homecoming",
+        author: "Kate Morton",
+        category: "Fiction",
+        price: 32.00
     },
     {
         id: 2,
-        image: "p-2.jpg",
-        name: "Fairtrade Zip Hoodie",
-        price: 59.95,
-        description: "A warm and durable zip-up hoodie made with fairtrade cotton."
+        image: "fiction-2.jpg",
+        name: "Things I Wish I Told My Mother",
+        author: 
+        [
+            "Susan Patterson",
+            "Susan Dilallo",
+            "James Patterson"
+        ],
+        category: "Fiction",
+        price: 35.00
     },
     {
         id: 3,
-        image: "p-3.jpg",
-        name: "Rudby Jergy",
-        price: 69.95,
-        description: "A soft and breathable jersey made with high-quality Rudby cotton."
+        image: "fiction-3.jpg",
+        name: "When In Rome",
+        author: "Liam Callanan",
+        category: "Fiction",
+        price: 22.00
     },
     {
         id: 4,
-        image: "p-4.jpg",
-        name: "Topaz Premium Zip Jacket",
-        price: 34.95,
-        description: "A lightweight and versatile jacket with a premium zip for added durability."
+        image: "nonfiction-1.jpg",
+        name: "The Turban and the Hat",
+        author: "Sonallah Ibrahim",
+        category: "Nonfiction",
+        price: 32.00
     },
     {
         id: 5,
-        image: "p-5.jpg",
-        name: "Rmit Fairtrade Polo",
-        price: 21.95,
-        description: "A classic polo shirt made with fairtrade materials and featuring the RMIT logo."
+        image: "nonfiction-2.jpg",
+        name: "How to Be Perfect",
+        author: "Michael Schur",
+        category: "Nonfiction",
+        price: 35.00
     },
     {
         id: 6,
-        image: "p-6.jpg",
-        name: "Portable Charger",
-        price: 10,
-        description: "A compact and powerful portable charger with multiple USB ports for charging your devices on the go."
+        image: "nonfiction-3.jpg",
+        name: "Who is Wellness for?",
+        author: "Fariha Róisín",
+        category: "Nonfiction",
+        price: 22.00
+    },
+    {
+        id: 7,
+        image: "children-1.jpg",
+        name: "Bo the Brave",
+        author: "Bethan Wollvin",
+        category: "Children",
+        price: 32.00
+    },
+    {
+        id: 8,
+        image: "children-2.jpg",
+        name: "A Girl Like You",
+        author: [
+            "Frank Murphy",
+            "Carla Murphy"
+        ],
+        category: "Nonfiction",
+        price: 35.00
+    },
+    {
+        id: 9,
+        image: "children-3.jpg",
+        name: "Rosie Revere, Engineer",
+        author: "Andrea Beaty",
+        category: "Nonfiction",
+        price: 22.00
     }
-];
-
+]
 
 module.exports = products;

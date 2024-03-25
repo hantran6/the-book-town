@@ -1,40 +1,53 @@
 <%- include ('partials/head') %>
   <%- include ('partials/nav') %>
-    <%- include ('partials/banner') %>
+  <!-- Banner section starts -->
+  <section class="home">
+    <!-- overlay text on background -->
+    <div class="overlay-text">
+        <h1>Buy <span>your</span> </h1>
+        <h1>favorite <span>book</span> </h1>
+        <h1>from <span>here</span> </h1>
 
-      <!--==========Main Section==========-->
-      <main>
-        <div class="album py-5 bg-body-tertiary" id="products">
-          <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-
-              <% products.forEach(function(product){ %>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <img src="/images/<%= product.image %>" alt="<%= product.image %>">
-                    <div class="card-body">
-                      <h3 class="card-title">
-                        <%= product.name %>
-                      </h3>
-                      <h4 class="card-text text-danger">
-                        <%= product.price %> AUD
-                      </h4>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <a href="product/<%= product.id %>" type="button" class="btn btn-primary">View</a>
-                          <a href="product/<%= product.id %>/delete" type="button" class="btn  btn-danger">Delete</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <!-- Shop button that go to order page -->
+        <a href="/order" class="shop-btn">Shop Now
+            <img src="/img/right-arrow.png" alt="right-arrow-icon">
+        </a>
+    </div>
+  </section>
+  <!-- banner section ends -->
+  <section class="content">
+    <% let productCounter = 0; %>
+    <% products.forEach(function(product, index){ %>
+        <% if (index % 3 === 0) { %>
+            <% if (index !== 0) { %>
+                </div> <!-- Close the previous grid-container -->
+            <% } %>
+            <div class="category-box">
+                <div class="heading">
+                    <h2>New <span><%= product.product_category_name %></span> Books</h2>
                 </div>
-              <% }); %>
-            </div>
-          </div>
+                <div class="grid-container">
+        <% } %>
+        <div class="grid-item">
+            <a href="#">
+                <img src="/img/<%= product.img_url %>" alt="<%= product.img_url %>">
+                <h3><%= product.product_name %></h3>
+                <p><i><%= product.product_author %></i></p>
+                <p>$<%= product.price %></p>
+            </a>
         </div>
-      </main>
+        <% if (productCounter % 3 === 2 || index === products.length - 1) { %>
+                </div> <!-- Close the current grid-container -->
+        
+        <!-- link to related category -->
+        <a href="/order" class="view-btn">Order Now
+        <img src="/img/right-arrow.png" alt="right-arrow-icon">
+        </a>
 
-      <!--==========Main Section==========-->
-      <%- include ('partials/footer') %>
+            </div>
+        <% } %>
+      <% productCounter++; %>
+    <% }); %>
+</section>
+
+  <%- include ('partials/footer') %>

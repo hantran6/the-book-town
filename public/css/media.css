@@ -1,0 +1,252 @@
+/* RMIT University Vietnam
+Course: COSC2430 Web Programming
+Semester: 2023A
+Assessment: Assignment 1
+Author: Tran Nguyen Ngoc Han
+ID: s3963227
+Acknowledgement:
+- Books information and images: https://bookshop.org/categories/m/fiction
+- About us video: https://www.youtube.com/watch?v=AcfM9Z9MbXI
+- Icon: https://fontawesome.com/ */
+
+@media(max-width: 960px){
+    /*== Home and general starts ==================================================================================== */
+    #menu-icon{
+        display: block;
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        background-color: var(--header-color);
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 10px;
+    }
+    .home,
+    #contact-us-bg{
+        width: 100%;
+        min-height: 400px;
+        padding: 80px 0 5px 0;
+    }
+    .overlay-text h1{
+        font-size: 35px;
+        padding: 5px;
+        text-shadow: 1px 1px #424242;
+    }
+    .shop-btn,
+    .search-bar-container,
+    #coming-soon-banner .overlay-text p{
+        padding: 0 5px;
+        margin: 5px 0 30px 0;
+    }
+    header .logo{
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+    }
+    header .logo img{
+        height: 60px;
+    }
+    .logo-remove{
+        display: none;
+    }
+    .navbar{
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 270px;
+        height:120vh;
+        background:var(--header-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 150px 30px;
+    }
+    .navbar a{
+        display: block;
+        margin: 1.2rem 0;
+    }
+    .open{
+        right:0;
+    }
+    header.sticky{
+        padding: 0;
+    }
+    .category-box{
+        padding: 2rem 0;
+    }
+    /*== Home and general ends ==================================================================================== */
+
+    /*== Category page starts ==================================================================================== */
+    #category-banner{
+        width: 100%;
+        min-height: fit-content;
+        background: var(--theme-color);
+        padding: 80px 0 5px 0;
+    }
+    #category-banner .overlay-text{
+        text-align: center;
+    }
+    #category-banner .search-bar-container{
+        padding: 0 30px;
+    }
+    #category-banner .overlay-text h1{
+        text-shadow: none;
+    }
+    .grid-container{
+        display: block;
+    }
+    .grid-item{
+        padding: .5rem 0;
+    }
+    .heading{
+        font-size: var(--small-heading-font);
+    }
+    #category-content{
+        display:grid;
+        grid-template-columns: auto;
+        padding:10px;
+    }
+    .search-bar-container{
+        width: 100%;
+    }
+
+    .left-side-bar{
+        order:2;
+    }
+    .category-list{
+        width: 100%;
+    }
+    .category-sublist{
+        display: block;
+        font-size: 14px;
+        font-style: italic;
+    }
+
+    .right-side-content{
+        width: 100%;
+    }
+    .right-side-content .category-box{
+        margin-left: 0;
+    }
+    .display-info,
+    .right-side-content .grid-container,
+    .breadcrumb{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    .display-info{
+        width: 100%;
+    }
+    .right-side-content .grid-item{
+        width: 200px;
+    }
+    .right-side-content .grid-item p:nth-child(3){
+        display: none;
+    }
+    /*== Category page ends ==================================================================================== */
+
+    /*== Book-detail page starts ==================================================================================== */
+    .banner video{
+        height: 400px;
+    }
+
+    .breadcrumb{
+        display: block;
+        padding: 5px 10px;
+    }
+
+    .content-container{
+        display: block;
+        padding: 20px 50px;
+    }
+    .sub-img{
+        display: flex;
+        flex-direction: row;
+        margin-left: 0;
+    }
+    .sub-img img{
+        margin: 0 20px 0 0;
+    }
+    .text-container{
+        margin: 0;
+        padding: 30px 0;
+    }
+    /*== Book-detail page ends ==================================================================================== */
+
+    /*== Contact page starts ==================================================================================== */
+    #contact-content{
+        display: block;
+        padding: 15px;
+    }
+    #contact-content h1{
+        font-size: 25px;
+    }
+    #contact-content .left-side-content{
+        width: 100%;
+    }
+
+    .form-container input,
+    .form-container select{
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 5px 0;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #d1caca;
+    }
+    .preference input{
+        width: 20px;
+        padding: 0;
+    }
+    .form-container button{
+        width: 80px;
+        height: 30px;
+        font-size: 14px;
+    }
+    textarea{
+        width: 100%;
+    }
+
+    #contact-content .right-side-content{
+        margin: 40px 0;
+        padding: 10px;
+    }
+    #contact-content .right-side-content i{
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        margin-top: 5px;
+    }
+    #contact-content .row{
+        display: flex;
+    }
+    #contact-content .text-container{
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 0 5px;
+    }
+    .text-container iframe{
+        width: 250px;
+        height: 250px
+    }
+    /*== Contact page ends ==================================================================================== */
+
+    /*== Footer starts ==================================================================================== */
+    .footer{
+        padding: 10px;
+    }
+    /*== Footer ends ==================================================================================== */
+
+    .container{
+        max-width: 960px;
+    }
+}
+    
+    
+    
+

@@ -1,21 +1,33 @@
 <%- include ('partials/head') %>
 <%- include ('partials/nav') %>
+<!-- Banner section starts -->
+<section class="home" id="category-banner">
+    <!-- Banner section starts -->
+    <!-- Video play -->
+    <div class="banner">
+      <video autoplay loop playsinline>
+          <source src="/video/category-sale.mp4" type="video/mp4">
+      </video>
+  </div>
+  <!-- Banner section ends -->
+</section>
+<!-- Banner section ends -->
 
+<!-- Sample checkout form from web programming course by Mr. Tom Huynh -->
 <!--==========Checkout Form Section==========-->
 <div class="container">
-    <main>
+    <main class="order-main">
         <div class="py-5 text-center">
-        <h2>Checkout form</h2>
-        <p class="lead">Please fill in this checkout form to complete the order of your purchase!</p>
+            <h2>Checkout form</h2>
+            <p class="lead">Please fill in the billing address to complete the order of your purchase!</p>
         </div>
     
-        <div>
-            <h4 class="mb-3">Billing address</h4>
+        <div id="checkout-form">
             <!-- The form is here -->
             <form method="POST" action="/checkout">
             <!-- Personal Information Section -->
             <div class="row g-3">
-                <div class="col-sm-6">
+                <div class="col-sm-6 mr-3">
                 <label for="firstName" class="form-label">First name</label>
                 <input type="text" class="form-control" id="firstName" required="" name="firstName">
                 </div>
@@ -35,7 +47,7 @@
                 <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" name="address">
                 </div>
     
-                <div class="col-md-5">
+                <div class="col-md-5 mr-3">
                 <label for="country" class="form-label">Country</label>
                 <select class="form-select" id="country" required="" name="country">
                     <option value="">Choose...</option>
@@ -44,7 +56,7 @@
                 </select>
                 </div>
     
-                <div class="col-md-4">
+                <div class="col-md-4 mr-3">
                 <label for="state" class="form-label">State</label>
                 <select class="form-select" id="state" required="" name="state">
                     <option value="">Choose...</option>
@@ -72,9 +84,10 @@
                     <% products.forEach(function(product){ %>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="products[]" value="<%= product.id %>" id="product<%= product.id %>">
-                            <label class="form-check-label" for="product<%= product.id %>"><%= product.name %> - $<%= product.price %></label>
+                            <input class="form-check-input" type="checkbox" name="products[]" value="<%= product.product_id %>" id="product<%= product.product_idid %>">
+                            <label class="form-check-label" for="product<%= product.product_id %>"><%= product.product_name %> - $<%= product.price %></label>
                         </div>
+                        
           
                       <% }); %>
                 </div>
@@ -91,5 +104,3 @@
 
 
 <%- include ('partials/footer') %>
-
-
